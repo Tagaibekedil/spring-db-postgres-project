@@ -33,8 +33,6 @@ public class UserIdeaDto {
     private LocalDate birthDate;
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime createdDt;
-    @GeneratedValue(generator = "sequence-generator")
-
     private List<IdeaDto> post;
     public UserIdeaDto(UserIdeaEntity entity) {
         this.id = entity.getId();

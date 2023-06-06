@@ -1,18 +1,17 @@
 package kg.megalab.springbootjpa.model.ideadto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import kg.megalab.springbootjpa.dal.entity.idea.IdeaEntity;
+import kg.megalab.springbootjpa.dal.entity.idea.UserIdeaEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,11 +23,16 @@ public class IdeaDto {
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime createdDt;
     private Long user;
+    private List<CommentDto>comments;
+    private List<LikeDto>likes;
 
     public IdeaDto(IdeaEntity idea) {
         this.id = idea.getId();
         this.ideaText = idea.getIdeaText();
         this.createdDt = idea.getCreatedDt();
         this.user = idea.getUser().getId();
+        this.comments=idea.getComments().stream().map(CommentDto::new).collect(Collectors.toList());
+        this.likes=idea.getLikes().stream().map(LikeDto::new).collect(Collectors.toList());
+
     }
 }

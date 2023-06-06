@@ -21,12 +21,12 @@ import java.util.List;
 @Table(name = "users")
 public class UserIdeaEntity {
         @Id
-        @GeneratedValue(generator = "sequence-generation")
+        @GeneratedValue(generator = "sequence-us")
         @GenericGenerator(
-                name = "sequence-generation",
+                name = "sequence-us",
                 strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
                 parameters ={
-                @org.hibernate.annotations.Parameter(name = "sequence_names", value = "users_sequence"),
+                @org.hibernate.annotations.Parameter(name = "sequence_names", value = "us_sequence"),
                 @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
                 @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
         })
@@ -42,9 +42,8 @@ public class UserIdeaEntity {
         private LocalDate birthDate;
         @CreationTimestamp
         @Column(name = "created_dt",nullable = false)
-        @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss")
         private LocalDateTime createdDt;
-        @OneToMany(mappedBy ="user",cascade = CascadeType.ALL)
+        @OneToMany
         private List<IdeaEntity> idea;
 
     public UserIdeaEntity(UserIdeaDto dto) {
