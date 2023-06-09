@@ -12,23 +12,29 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/usersId")
 public class UserIdeaController {
+
     private final UserIdeaService service;
+
     @PostMapping
     public ResponseEntity<?>saveUserIdea( @Valid @RequestBody UserIdeaDto dto){
         service.saveUserIdea(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @GetMapping
     public ResponseEntity<?>getUserIdea(@RequestParam(name = "id")Long id){
         return new ResponseEntity<>(service.getUsers(id),HttpStatus.OK);
     }
+
     @GetMapping("/getAll")
     public ResponseEntity<?>getAllUsers(){return new ResponseEntity<>(service.getAllUsers(),HttpStatus.OK);}
+
     @DeleteMapping
     public boolean deleteUser(@RequestParam(name = "id") Long id){
         return service.deleteUser(id);
 
     }
+
     @PutMapping("/put")
     public ResponseEntity<?>putUser(@Valid @RequestBody UserIdeaDto dto){
         service.putUser(dto);

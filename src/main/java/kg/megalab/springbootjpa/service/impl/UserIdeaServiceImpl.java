@@ -8,6 +8,7 @@ import kg.megalab.springbootjpa.service.serv.UserIdeaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,12 +18,15 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 
 public class UserIdeaServiceImpl implements UserIdeaService {
+
     private final UserIdeaRepository userIdeaRepository;
+
     @Override
     public void saveUserIdea(UserIdeaDto dto) {
         UserIdeaEntity userIdeaEntity = new UserIdeaEntity(dto);
         userIdeaRepository.save(userIdeaEntity);
     }
+
     @Override
     public UserIdeaDto getUsers(Long id) {
         Optional<UserIdeaEntity> entities = userIdeaRepository.findById(id);
@@ -31,6 +35,7 @@ public class UserIdeaServiceImpl implements UserIdeaService {
         }
         return new UserIdeaDto(entities.get());
     }
+
     @Override
     public List<UserIdeaDto> getAllUsers() {
         List<UserIdeaEntity> entities = (List<UserIdeaEntity>) userIdeaRepository.findAll();

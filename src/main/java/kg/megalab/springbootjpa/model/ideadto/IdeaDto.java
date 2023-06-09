@@ -16,14 +16,20 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IdeaDto {
+
     private Long id;
+
     @NotEmpty(message = "not.blank")
     @Size( max = 200,message = "row.limit.text")
     private String ideaText;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime createdDt;
+
     private Long user;
+
     private List<CommentDto>comments;
+
     private List<LikeDto>likes;
 
     public IdeaDto(IdeaEntity idea) {

@@ -3,7 +3,6 @@ package kg.megalab.springbootjpa.util;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;

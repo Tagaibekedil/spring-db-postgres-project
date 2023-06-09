@@ -16,28 +16,29 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 
 public class IdeaServiceImpl implements IdeaService {
+
     private final IdeaRepository ideaRepository;
+
     @Override
     public void saveIdea(IdeaDto postDto) {
-        IdeaEntity entity=new IdeaEntity(postDto);
+        IdeaEntity entity = new IdeaEntity(postDto);
         ideaRepository.save(entity);
     }
 
     @Override
-    public List<IdeaDto> getIdea() {
-        List<IdeaEntity>entities= (List<IdeaEntity>) ideaRepository.findAll();
+    public List<IdeaDto> getAllIdea() {
+        List<IdeaEntity> entities = (List<IdeaEntity>) ideaRepository.findAll();
         return entities.stream().map(IdeaDto::new).collect(Collectors.toList());
     }
+
     public boolean deleteIdea(Long id) {
-        boolean delete=false;
-        Optional<IdeaEntity> entity=ideaRepository.findById(id);
-        if (entity.isPresent()){
+        boolean delete = false;
+        Optional<IdeaEntity> entity = ideaRepository.findById(id);
+        if (entity.isPresent()) {
             ideaRepository.delete(entity.get());
-            delete=true;
+            delete = true;
         }
         return delete;
     }
-
-
-    }
+}
 

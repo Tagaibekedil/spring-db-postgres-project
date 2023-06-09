@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("/idea")
 public class IdeaController {
+
     private final IdeaService service;
 
     @PostMapping
@@ -19,10 +20,13 @@ public class IdeaController {
         service.saveIdea(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
     @GetMapping
     public ResponseEntity<?>getIdea(){
-        return new ResponseEntity<>(service.getIdea(),HttpStatus.OK);
+        return new ResponseEntity<>(service.getAllIdea(),HttpStatus.OK);
     }
+
+
     @DeleteMapping
     public boolean deleteIdea(@RequestParam(name = "id")Long id){
         return service.deleteIdea(id);

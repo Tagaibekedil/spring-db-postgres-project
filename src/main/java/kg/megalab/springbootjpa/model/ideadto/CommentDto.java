@@ -12,10 +12,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentDto {
+
     private Long id;
+
     private String comment;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime createdDt;
+
     private Long entity;
 
     public CommentDto(CommentEntity entity) {

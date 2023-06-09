@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/comment")
 public class CommentController {
+
     private final CommentService service;
+
     @PostMapping
     public ResponseEntity<?>saveComment(@RequestBody CommentDto dto){
         service.saveComments(dto);

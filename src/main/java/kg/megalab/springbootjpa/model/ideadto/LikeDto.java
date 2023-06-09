@@ -12,10 +12,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LikeDto {
+
     private Long id;
+
     private String like;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime createdDt;
+
     private Long idea;
 
     public LikeDto(LikeEntity entity) {

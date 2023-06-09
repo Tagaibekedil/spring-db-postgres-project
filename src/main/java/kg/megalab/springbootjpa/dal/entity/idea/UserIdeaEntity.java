@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
+@Table
 public class UserIdeaEntity {
         @Id
         @GeneratedValue(generator = "sequence-us")
@@ -31,18 +31,23 @@ public class UserIdeaEntity {
                 @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
         })
         private Long id;
+
         private String login;
-        @Column(unique = true,name = "email")
+
         private String email;
-        @Column(name = "first_name")
+
         private String firstName;
-        @Column(name = "last_name")
+
         private String lastName;
-        @Column(name = "birth_date")
+
         private LocalDate birthDate;
-        @CreationTimestamp
-        @Column(name = "created_dt",nullable = false)
+
+        private LocalDateTime Last_active_dt;
+
+        private boolean is_actual;
+
         private LocalDateTime createdDt;
+
         @OneToMany
         private List<IdeaEntity> idea;
 

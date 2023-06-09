@@ -12,10 +12,12 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class LikeServiceImpl implements LikeService {
+
     private final LikeRepository repository;
+
     @Override
     public void saveLikes(LikeDto dto) {
-        LikeEntity entity=new LikeEntity(dto);
+        LikeEntity entity = new LikeEntity(dto);
         repository.save(entity);
 
     }

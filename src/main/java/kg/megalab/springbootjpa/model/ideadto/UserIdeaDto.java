@@ -16,24 +16,33 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserIdeaDto {
+
     private Long id;
+
     @NotEmpty(message = "not.blank")
     @Size(min = 5, max = 20,message = "row.limit")
     private String login;
+
     @Email(message = "email")
     @NotNull
     private String email;
+
     @Size(min = 3,max = 50,message = "row.limit.name")
     private String firstName;
+
     @Size(min = 3,max = 50)
     @NotBlank(message ="not.blank")
     private String lastName;
+
     @NotNull
     @PastOrPresent(message = "birth.date")
     private LocalDate birthDate;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd hh:mm:ss")
     private LocalDateTime createdDt;
+
     private List<IdeaDto> post;
+
     public UserIdeaDto(UserIdeaEntity entity) {
         this.id = entity.getId();
         this.login = entity.getLogin();

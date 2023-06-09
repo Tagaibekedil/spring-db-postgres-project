@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class CommentServiceImpl implements CommentService {
+
     private final CommentRepository repository;
+
     @Override
     public void saveComments(CommentDto dto) {
         CommentEntity entity=new CommentEntity(dto);

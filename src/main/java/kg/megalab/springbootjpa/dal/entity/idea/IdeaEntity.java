@@ -17,6 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "ideas")
 public class IdeaEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-idea")
     @GenericGenerator(
@@ -28,23 +29,25 @@ public class IdeaEntity {
                     @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
             })
     private Long id;
+
     @Column(name = "idea_text")
     private String ideaText;
+
     @Column(name = "created_dt", nullable = false)
     @CreationTimestamp
     private LocalDateTime createdDt;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserIdeaEntity user;
 
-    @OneToMany
+    @OneToMany( cascade = CascadeType.PERSIST)
     private List<CommentEntity>comments;
+
     @OneToMany
     private List<LikeEntity>likes;
-    @Column(name = "last_active_dt")
+
     private LocalDateTime lastActiveDt;
-    @Column(name = "is_actual")
-    private Boolean isActual;
 
     public IdeaEntity(IdeaDto ideaDto) {
         this.id = ideaDto.getId();

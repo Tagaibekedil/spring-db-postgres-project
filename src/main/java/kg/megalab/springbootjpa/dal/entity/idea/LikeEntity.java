@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "likes")
 public class LikeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-li")
     @GenericGenerator(
@@ -27,10 +28,13 @@ public class LikeEntity {
                     @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
             })
     private Long id;
+
     private String like;
+
     @Column(name = "created_dt")
     @CreationTimestamp
     private LocalDateTime createdDt;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idea_id")
     private IdeaEntity idea;

@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/like")
+@RequestMapping("/likes")
 public class LikeController {
+
     private final LikeService likeService;
+
     @PostMapping
     public ResponseEntity<?>saveLike(@RequestBody LikeDto dto){
         likeService.saveLikes(dto);

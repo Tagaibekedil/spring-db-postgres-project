@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "comments")
 public class CommentEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence-c")
     @GenericGenerator(
@@ -25,11 +26,16 @@ public class CommentEntity {
                     @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
                     @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
             })
+
     private Long id;
+
     private String comment;
+
     @Column(name = "created_dt")
+
     @CreationTimestamp
     private LocalDateTime createdDt;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idea_id")
     private IdeaEntity idea;

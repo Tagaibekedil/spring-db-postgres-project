@@ -6,7 +6,7 @@ import java.util.List;
 public interface IdeaService {
     void  saveIdea(IdeaDto postDto);
 
-    List<IdeaDto> getIdea();
+    List<IdeaDto> getAllIdea();
 
     boolean deleteIdea(Long id);
 
