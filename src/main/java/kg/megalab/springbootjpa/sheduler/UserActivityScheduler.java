@@ -16,13 +16,15 @@ public class UserActivityScheduler {
 
     private final IdeaService ideaService;
 
+    @Scheduled(cron = "*/15 * * * * *")
+    private void getNewIdeas() {
 
-   @Scheduled(cron = "*/15 * * * * *")
-    private void getNewIdeas(){
-        List<IdeaEntity>usersNotTrue=ideaService.getAllIdea().stream().map(IdeaEntity::new).toList();
-        for (IdeaEntity dto:usersNotTrue){
-            if (LocalDateTime.now().minusDays(7).isAfter(dto.getLastActiveDt())){
-                log.info("удалено");
+        LocalDateTime days = LocalDateTime.now().minusDays(7);
+        List<IdeaEntity> usersNotTrue = ideaService.getAllIdea().stream().map(IdeaEntity::new).toList();
+        for (IdeaEntity dto : usersNotTrue) {
+            LocalDateTime ideasLastActiveDt = dto.getLast_active_dt();
+            if (days.isAfter(ideasLastActiveDt)) {
+                log.info("Не актуальный пользовательудален!Номер ID ="+dto.getId());
                 ideaService.deleteIdea(dto.getId());
             }
         }

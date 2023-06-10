@@ -1,7 +1,6 @@
 package kg.megalab.springbootjpa.model.ideadto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.GeneratedValue;
 import jakarta.validation.constraints.*;
 import kg.megalab.springbootjpa.dal.entity.idea.UserIdeaEntity;
 import lombok.AllArgsConstructor;
@@ -34,7 +33,6 @@ public class UserIdeaDto {
     @NotBlank(message ="not.blank")
     private String lastName;
 
-    @NotNull
     @PastOrPresent(message = "birth.date")
     private LocalDate birthDate;
 

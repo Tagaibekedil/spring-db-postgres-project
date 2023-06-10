@@ -2,7 +2,6 @@ package kg.megalab.springbootjpa.dal.entity.idea;
 
 import jakarta.persistence.*;
 import kg.megalab.springbootjpa.model.ideadto.LikeDto;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -4,13 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import kg.megalab.springbootjpa.dal.entity.idea.IdeaEntity;
-import kg.megalab.springbootjpa.dal.entity.idea.UserIdeaEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -28,17 +25,14 @@ public class IdeaDto {
 
     private Long user;
 
-    private List<CommentDto>comments;
-
-    private List<LikeDto>likes;
+    private LocalDateTime last_active_dt;
 
     public IdeaDto(IdeaEntity idea) {
         this.id = idea.getId();
         this.ideaText = idea.getIdeaText();
         this.createdDt = idea.getCreatedDt();
         this.user = idea.getUser().getId();
-        this.comments=idea.getComments().stream().map(CommentDto::new).collect(Collectors.toList());
-        this.likes=idea.getLikes().stream().map(LikeDto::new).collect(Collectors.toList());
+        this.last_active_dt=idea.getLast_active_dt();
 
     }
 }

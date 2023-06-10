@@ -2,14 +2,12 @@ package kg.megalab.springbootjpa.dal.entity.idea;
 
 import jakarta.persistence.*;
 import kg.megalab.springbootjpa.model.ideadto.IdeaDto;
-import kg.megalab.springbootjpa.model.ideadto.LikeDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Setter
 @Getter
@@ -41,19 +39,24 @@ public class IdeaEntity {
     @JoinColumn(name = "user_id")
     private UserIdeaEntity user;
 
-    @OneToMany( cascade = CascadeType.PERSIST)
-    private List<CommentEntity>comments;
-
-    @OneToMany
-    private List<LikeEntity>likes;
-
-    private LocalDateTime lastActiveDt;
+    private LocalDateTime last_active_dt;
+    @Override
+    public String toString() {
+        return "IdeaEntity{" +
+                "id=" + id +
+                ", ideaText='" + ideaText + '\'' +
+                ", createdDt=" + createdDt +
+                ", user=" + user +
+                ", last_Active_Dt=" + last_active_dt +
+                '}';
+    }
 
     public IdeaEntity(IdeaDto ideaDto) {
         this.id = ideaDto.getId();
         this.ideaText = ideaDto.getIdeaText();
         this.createdDt = ideaDto.getCreatedDt();
         this.user = new UserIdeaEntity(ideaDto.getId());
+        this.last_active_dt=ideaDto.getLast_active_dt();
     }
 
     public IdeaEntity(Long ideaId) {

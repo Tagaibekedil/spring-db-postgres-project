@@ -1,13 +1,11 @@
 package kg.megalab.springbootjpa.dal.entity.idea;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import kg.megalab.springbootjpa.model.ideadto.UserIdeaDto;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,7 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "users")
 public class UserIdeaEntity {
         @Id
         @GeneratedValue(generator = "sequence-us")
@@ -48,7 +46,7 @@ public class UserIdeaEntity {
 
         private LocalDateTime createdDt;
 
-        @OneToMany
+        @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
         private List<IdeaEntity> idea;
 
     public UserIdeaEntity(UserIdeaDto dto) {
